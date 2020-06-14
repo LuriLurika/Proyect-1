@@ -1,4 +1,5 @@
 // CLASE PARA CREAR CASILLAS
+
 class Box {
 
     constructor(y, x, type) {
@@ -6,27 +7,24 @@ class Box {
         this.x = x
         this.type = type
     }
+ 
+    
+// COLOR DE CADA CASILLA SEGÚN SU TIPO
+        
+    drawBox(ctx, canvasSize, image) {                   
 
-    drawBox(ctx, canvasSize) {
-        let w = canvasSize.w / 18
-        let y = canvasSize.h / 13
         if (this.type === ('wall')) {
-            ctx.fillStyle = 'pink'
-        } else if (this.type === ('apple')) {
-            ctx.fillStyle = 'black'
-        } else if (this.type === ('ironhack')) {
             ctx.fillStyle = 'blue'
-        } else if (this.type === ('tunnel')) {
-            ctx.fillStyle = 'green'
         } else if (this.type === ('ghost')) {
             ctx.fillStyle = 'yellow'
+        } else if (this.type === ('tunnel')) {
+            ctx.fillStyle = 'green'
         } else {
-            ctx.fillStyle = 'white'
+            ctx.fillStyle = 'black'
         }
 
-        ctx.fillRect(this.x * w, this.y * y, w, y)
+        ctx.fillRect(this.x * image.w, this.y * image.h, image.w, image.h)
     }
-
 
 }
 
