@@ -1,15 +1,19 @@
 class Character {
 
-    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall) {
+    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall, direction) {
         this.ctx = ctx
 
-        this.imageW = imageW
-        this.imageH = imageH
+        this.characterSize = {
+            w: imageW,
+            h: imageH
+        }
 
         this.vel = 1
 
-        this.posX = posX
-        this.posY = posY
+        this.characterPos = {
+            x: posX,
+            y: posY
+        }
 
         this.image = new Image()
         this.image.src = `/img/${name}`
@@ -20,6 +24,14 @@ class Character {
 
         this.arrayWall = arrayWall
 
+        this.direction = 'undefined'
+
+        this.setListener()
+
+        this.setListener()
+
+        //this.move()
+
     }
 
 
@@ -27,29 +39,17 @@ class Character {
     draw(framesCounter) {
         const framePacMan = this.image.frames
         const frameIndexPacMan = this.image.framesIndex
-        const posPacManX = frameIndexPacMan * Math.floor(this.imageW / framePacMan)
-        const posPacManY = this.imageH //frameIndexPacMan * Math.floor(this.imageH / framePacMan)
-        //console.log(`this.image ${this.image}`)
-        //console.log(`posPacManX ${posPacManX}`)
-        //console.log(`posPacManY ${posPacManY}`)
-        //console.log(`this.imageH ${ this.imageH }`)
-        //console.log(`this.imageW ${this.imageW}`)
-        //console.log(`framePacMan ${framePacMan}`)
-        //console.log(`this.posX ${this.posX}`)
-        //console.log(`this.posY ${this.posY}`)
-        //console.log(`frameIndexPacMan ${frameIndexPacMan}`)
-        this.ctx.drawImage(this.image, 
-             this.image, //objeto imagen
-             posPacManX, // x coordenada a seleccionar
-             posPacManY, //y coordeanda a seleccionar
-             this.imageW / 2, //width del area a seleccionar
-             this.imageH, //height del area a seleccionar
-             this.posX, // x coordenada donde pintar
-             this.posY, // y coordeanda a pintar
-             this.imageW, // width de la imagen
-             this.imageH //height de la imagen
-        )
+        const posPacManX = frameIndexPacMan * Math.floor(this.characterSize.w / framePacMan)
+        const posPacManY = this.characterSize.h //frameIndexPacMan * Math.floor(this.imageH / framePacMan)
 
+        this.ctx.fillStyle = "yellow"
+        this.ctx.fillRect(
+            this.characterPos.x * this.characterSize.w,
+            this.characterPos.y * this.characterSize.h,
+            this.characterSize.w,
+            this.characterSize.h,
+
+        )
         //this.animate(framesCounter)
     }
 
@@ -64,30 +64,77 @@ class Character {
         }
     }
 
+    /*stopLimit(arrayWall) {
+        if(this.characterPos.x !== )
+    }*/
+
     move(arrayWall) {
-        if (this.posY < this.posY0) {
-            this.posY += this.velY;
-            this.velY += this.gravity;
+        const nextMovement = { ...this.characterPos }
+
+
+        switch (this.direction) {
+            case "up":
+                nextMovement.y--
+                break;
+            case "down":
+                nextMovement.y++
+                break;
+            case "left":
+                nextMovement.x--
+                break;
+            case "right":
+                nextMovement.x++
+                break;
+        }
+
+        if (arrayWall.filter(elm => 
+            elm.x === nextMovement.x && elm.y === nextMovement.y
+        ).length > 0) {
+            console.log("QUIETO PARAO")
         } else {
-            this.posY = this.posY0;
-            this.velY = 1;
+            this.characterPos = nextMovement
         }
     }
 
-    setListeners() {
+    
+    setListener() {
         document.addEventListener("keydown", e => {
             switch (e.keyCode) {
-                case this.keys.TOP:
-                    if (this.posY >= this.posY0) {
-                        this.jump()
-                    }
+                case this.keys.up:
+                    this.direction = "up"
+                    console.log(this.direction)
+                    console.log("veteparriba")
                     break;
-                case this.keys.SPACE:
-                    this.shoot();
+                case this.keys.down:
+                    this.direction = "down"
+                    console.log(this.direction)
+                    console.log("vetepabajo")
+                    break;
+                case this.keys.left:
+                    this.direction = "left"
+                    console.log(this.direction)
+                    console.log("vetepalaizquierda")
+                    break;
+                case this.keys.right:
+                    this.direction = "right"
+                    console.log(this.direction)
+                    console.log("vetepaladerecha")
                     break;
             }
         });
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

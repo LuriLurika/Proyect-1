@@ -10,7 +10,12 @@ const german = {
         w: window.innerWidth,
         h: window.innerHeight
     },
-    keys: undefined,
+    keys: {
+        up: 38,
+        down: 40,
+        left: 37,
+        right: 39
+    },
 
     //ARRAYS DE PILLS Y MUROS
 
@@ -27,7 +32,7 @@ const german = {
     },
     character: undefined,
     framesCounter: 0,
-    fps: 1,
+    fps: 60,
 
 
 
@@ -48,13 +53,15 @@ const german = {
 
     start() {
 
-        this.reset(),
-        this.drawAll()
-            setInterval(() => {
-                this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
-                this.clear()
-                //this.drawAll()
-            }, 1000 / this.fps)
+        this.reset()
+        //this.drawAll()
+        setInterval(() => {
+            this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
+            this.clear()
+            this.drawAll()
+            this.character.move(this.arrayWall)
+
+        }, 10000 / this.fps)
 
     },
 
@@ -77,14 +84,17 @@ const german = {
 
         //PINTAR LOGO IRONHACK EN SU CASILLA
         this.arrayIron.forEach(elm => {
-            this.drawImage('ironhack.png', elm.y * this.image.h + 5, elm.x * this.image.w + 5, this.image.w - 10, this.image.h - 10)
+            this.drawImage('ironhack.png',
+                elm.y * this.image.h + 5,
+                elm.x * this.image.w + 5,
+                this.image.w - 10,
+                this.image.h - 10)
         })
 
         //INTENTO DE PINTAR PACMAN
         this.character.draw(this.framesCounter)
         //this.drawFakePacman(7 * this.image.h + (this.image.h / 2), 5 * this.image.w - (this.image.w / 2), this.image.w - 10, this.image.h - 10)
-        this.ctx.fillStyle = "yellow"
-        this.ctx.fillRect(7 * this.image.h + (this.image.h / 2), 5 * this.image.w - (this.image.w / 2), this.image.w - 10, this.image.h - 10)
+
 
     },
 
@@ -92,13 +102,14 @@ const german = {
     reset() {
         this.character = new Character(
             this.ctx,
-            450,
-            450,
+            this.image.w, //this.image.h 
+            this.image.h, //this.image.w
             5,
             7,
             "pacman-2.png",
             this.keys,
-            this.arrayWall
+            this.arrayWall,
+
         )
     },
 
@@ -116,5 +127,7 @@ const german = {
         image.src = `/img/${name}`
         image.onload = () => this.ctx.drawImage(image, posY, posX, w, h)
     },
+
+
 
 }

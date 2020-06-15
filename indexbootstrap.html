@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GER-MAN, The Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+
+
+
+    <div class="container-fluid vh-100 pantalla-juego">
+        <div class="row text-center">
+            <div class="col-md-12 col-lg-4 left align-self-center">
+                <img src="img\german-logo.png" alt="GER-MAN Logo">
+                <p class="letter ">1222222222222222222222222229</p>
+                <p class="pixel-letter">A GAME BY</p>
+                <p class="letter ">Laura<span class="pixel-letter"> & </span>Scarl</p>
+                <p class="letter ">1222222222222222222222222229</p>
+
+            </div> <!-- END COL.12/4 -->
+
+
+            <div class="col-md-12 col-lg-8">
+
+                <div class="row d-flex pixel-letter">
+                    <div class="col-6 d-flex justify-content-around">SCORE <span>0</span></div>
+                    <div class="col-6 d-flex justify-content-around">LIFES <span>5</span></div>
+                </div> <!-- END ROW -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <canvas id="canvasGame" style="width: 900px;
+    height: 750px;"> </canvas>
+                    </div>
+                </div><!-- END ROW -->
+
+                <div class="row pixel-letter">
+                    <div class="col-6">
+                        <p class="d-flex justify-content-around">FANTASMITAS</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="d-flex justify-content-around">ALGO MÁS</p>
+                    </div>
+                </div><!-- END ROW -->
+
+            </div><!-- END COL.12/8 -->
+
+        </div> <!-- END ROW -->
+
+    </div> <!-- END CONTAINER FLUID-->
+
+    <div class="container-fluid vh-100 pantalla-inicio d-flex justify-content-center">
+        <div class="row d-flex align-self-center ">
+            <div class="text-center col ">
+                <p class="letter">PRUEBA</p>
+                <button class=" text-center" onclick="startGame()">BOTÓN</button>
+            </div>
+
+        </div>
+
+
+
+        <script src="js/pantallas.js"></script>
+        <script src="js/box.js"></script>
+        <script src="js/character.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/script.js"></script>
+
+</body>
+
+</html>
