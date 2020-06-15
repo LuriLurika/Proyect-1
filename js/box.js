@@ -23,7 +23,7 @@ class Box {
             ctx.fillStyle = 'black'
         }
 
-        ctx.fillRect(this.x * image.w, this.y * image.h, image.w, image.h)
+        ctx.fillRect(this.x * image.w, this.y * image.h, image.w +1, image.h +1)
     }
 
 }
@@ -42,7 +42,7 @@ const arrBox = [
     new Box(0, 4, 'wall'),
     new Box(0, 5, 'wall'),
     new Box(0, 6, 'wall'),
-    new Box(0, 7, 'wall'),
+    new Box(0, 7, 'wall'), 
     new Box(0, 8, 'wall'),
     new Box(0, 9, 'wall'),
     new Box(0, 10, 'wall'),

@@ -6,7 +6,7 @@
 #canvasGame {
     width: 900px;
     height: 750px;
-    background-color: red;
+    background-color: blue;
     border: 10px solid black;
 }
 
@@ -19,14 +19,16 @@ div {
 .drc {
     float: right;
     width: 60%;
+    background-color: black;
 }
 
 .izq {
-    background-color: grey;
+    background-color: black;
     width: 40%;
     float: left;
 }
 
 .izq img {
-    width: 100%
+    width: 100%;
+    padding-top: 3rem;
 }
