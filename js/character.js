@@ -73,6 +73,8 @@ class Character {
     }
 
 
+
+    
     move(arrayWall) {
 
         const nextMovement = {

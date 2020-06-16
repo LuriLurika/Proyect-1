@@ -154,12 +154,12 @@ const german = {
 
 
 
-    //MÉTODOS DE APOYO PARA CARGAR IMÁGENES
+    //MÉTODO DE APOYO PARA CARGAR IMÁGENES
 
     drawImage(name, posX, posY, w, h) {
         let image = new Image()
         image.src = `/img/${name}`
-        image.onload = () => this.ctx.drawImage(image, posY, posX, w, h)
+        this.ctx.drawImage(image, posY, posX, w, h)
     },
 
 
