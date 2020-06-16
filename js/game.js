@@ -32,8 +32,13 @@ const german = {
     },
 
     image: {
-        w: 446,
+        w: 750,
         h: 208,
+    },
+
+    ghostSize: {
+        w: 910,
+        h: 171,
     },
 
     direction: undefined,
@@ -42,6 +47,8 @@ const german = {
     apple: undefined,
     iron: undefined,
     background: undefined,
+
+    ghost_1: undefined,
 
 
     framesCounter: 0,
@@ -75,6 +82,7 @@ const german = {
             this.drawWall()
             this.drawPacman()
             this.drawPills()
+            this.drawGhost()
 
 
         }, 10000 / this.fps)
@@ -102,6 +110,11 @@ const german = {
             })
 
         })
+        this.pacman.eatIron(this.arrayIron, ironEaten => {
+            this.arrayIron = [...this.arrayIron].filter(elm => {
+                return elm.x !== ironEaten.x || elm.y !== ironEaten.y
+            })
+        })
     },
 
 
@@ -125,7 +138,62 @@ const german = {
         })
     },
 
-    
+    createGhost() {
+        this.ghost_1 = new Ghost(
+            this.ctx,
+            this.image.w,
+            this.image.h,
+            5,
+            7,
+            "ghost_sprites_rosa.png",
+            this.arrayWall,
+            this.tile.w,
+            this.tile.h,
+            this.direction)
+        
+        this.ghost_2 = new Ghost(
+            this.ctx,
+            this.image.w,
+            this.image.h,
+            5,
+            8,
+            "ghost_sprites_azul.png",
+            this.arrayWall,
+            this.tile.w,
+            this.tile.h,
+            this.direction)
+        
+        this.ghost_3 = new Ghost(
+            this.ctx,
+            this.image.w,
+            this.image.h,
+            5,
+            9,
+            "ghost_sprites_rojo.png",
+            this.arrayWall,
+            this.tile.w,
+            this.tile.h,
+            this.direction)
+        
+        this.ghost_4 = new Ghost(
+            this.ctx,
+            this.image.w,
+            this.image.h,
+            5,
+            10,
+            "ghost_sprites_naranja.png",
+            this.arrayWall,
+            this.tile.w,
+            this.tile.h,
+            this.direction)
+    },
+
+    drawGhost() {
+        this.ghost_1.draw(this.framesCounter)
+        this.ghost_2.draw(this.framesCounter)
+        this.ghost_3.draw(this.framesCounter)
+        this.ghost_4.draw(this.framesCounter)
+    },
 
     //PINTAR PACMAN EN SU POSICION INICIAL
 
@@ -133,6 +201,7 @@ const german = {
         this.createPacman()
         this.drawWall()
         this.drawPills()
+        this.createGhost()
     },
 
     createPacman() {
@@ -142,7 +211,7 @@ const german = {
             this.image.h,
             5,
             7,
-            "pacman-2.png",
+            "pacman.png",
             this.keys,
             this.arrayWall,
             this.tile.w,

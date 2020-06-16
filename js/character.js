@@ -17,7 +17,7 @@ class Character {
 
         this.image = new Image()
         this.image.src = `/img/${name}`
-        this.image.frames = 2
+        this.image.frames = 3
         this.image.framesIndex = 0
 
         this.keys = keys
@@ -36,7 +36,7 @@ class Character {
     }
 
 
-    // PINTA EN EL MAPA
+    // PINTA PERSONAJE
 
     draw(framesCounter) {
 
@@ -63,7 +63,7 @@ class Character {
 
     animate(framesCounter) {
 
-        if (framesCounter % 2 == 0) {
+        if (framesCounter % 1 == 0) {
             this.image.framesIndex++;
 
         }
@@ -74,7 +74,7 @@ class Character {
 
 
 
-    
+
     move(arrayWall) {
 
         const nextMovement = {
@@ -120,12 +120,21 @@ class Character {
     }
 
     eatApple(arrayApple, onAppleEaten) {
-            const apples= arrayApple.filter(elm =>
+        const apples = arrayApple.filter(elm =>
             elm.x === this.characterPos.x && elm.y === this.characterPos.y);
         if (apples.length > 0) {
             onAppleEaten(apples[0])
-        } 
+        }
     }
+
+    eatIron(arrayIron, onIronEaten) {
+        const ironhack = arrayIron.filter(elm =>
+            elm.x === this.characterPos.x && elm.y === this.characterPos.y)
+        if (ironhack.length > 0) {
+            onIronEaten(ironhack[0])
+        }
+    }
+    //
 
 
     setListener() {
