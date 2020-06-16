@@ -16,9 +16,7 @@ class Box {
         if (this.type === ('wall')) {
             ctx.fillStyle = 'blue'
         } else if (this.type === ('ghost')) {
-            ctx.fillStyle = 'yellow'
-        } else if (this.type === ('tunnel')) {
-            ctx.fillStyle = 'green'
+            ctx.fillStyle = 'red'       
         } else {
             ctx.fillStyle = 'black'
         }

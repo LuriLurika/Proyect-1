@@ -1,6 +1,6 @@
 class Character {
 
-    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall, direction) {
+    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall, tileW, tileH, direction) {
         this.ctx = ctx
 
         this.characterSize = {
@@ -18,60 +18,66 @@ class Character {
         this.image = new Image()
         this.image.src = `/img/${name}`
         this.image.frames = 2
-        this.image.framesIndex = 1
+        this.image.framesIndex = 0
 
         this.keys = keys
 
         this.arrayWall = arrayWall
 
-        this.direction = 'undefined'
+        this.tile = {
+            w: tileW,
+            h: tileH,
+        }
+
+        this.direction = direction
 
         this.setListener()
-
-        this.setListener()
-
-        //this.move()
 
     }
 
 
     // PINTA EN EL MAPA
+
     draw(framesCounter) {
+
         const framePacMan = this.image.frames
         const frameIndexPacMan = this.image.framesIndex
         const posPacManX = frameIndexPacMan * Math.floor(this.characterSize.w / framePacMan)
-        const posPacManY = this.characterSize.h //frameIndexPacMan * Math.floor(this.imageH / framePacMan)
-
-        this.ctx.fillStyle = "yellow"
-        this.ctx.fillRect(
-            this.characterPos.x * this.characterSize.w,
-            this.characterPos.y * this.characterSize.h,
-            this.characterSize.w,
-            this.characterSize.h,
-
+        const posPacManY = 0 //tenemos todos los sprites en una row
+        this.ctx.drawImage(
+            this.image,
+            posPacManX, //SX coordenada de imagen
+            posPacManY, //SY coordenada de imagen
+            this.characterSize.w / framePacMan, //223 width que vamos a coger de la imagen
+            this.characterSize.h, // altura que vamos a coger de la imagen
+            this.characterPos.x * this.tile.w, //DX coordenada en la que pintamos
+            this.characterPos.y * this.tile.h, // DY coordenada en que pintamos
+            this.tile.w, //width que va a tener la imagen cuando la pintemosla imagen cuando la pintemos
+            this.tile.h, //height que va a tener la imagen cuando lo pintemos 
         )
-        //this.animate(framesCounter)
+        this.animate(framesCounter)
+
     }
 
 
 
     animate(framesCounter) {
-        if (framesCounter % 5 == 0) {
+
+        if (framesCounter % 2 == 0) {
             this.image.framesIndex++;
+
         }
         if (this.image.framesIndex > this.image.frames - 1) {
             this.image.framesIndex = 0;
         }
     }
 
-    /*stopLimit(arrayWall) {
-        if(this.characterPos.x !== )
-    }*/
 
     move(arrayWall) {
-        const nextMovement = { ...this.characterPos }
 
-
+        const nextMovement = {
+            ...this.characterPos
+        }
         switch (this.direction) {
             case "up":
                 nextMovement.y--
@@ -86,39 +92,46 @@ class Character {
                 nextMovement.x++
                 break;
         }
-
-        if (arrayWall.filter(elm => 
-            elm.x === nextMovement.x && elm.y === nextMovement.y
-        ).length > 0) {
-            console.log("QUIETO PARAO")
-        } else {
+        if (arrayWall.filter(elm =>
+                elm.x === nextMovement.x && elm.y === nextMovement.y
+            ).length > 0) {} else {
             this.characterPos = nextMovement
+            this.moveTunel()
         }
     }
 
-    
+    moveTunel() {
+        const nextMovementTunel = {
+            ...this.characterPos
+        }
+
+        if (nextMovementTunel.x++ === 17 && nextMovementTunel.y === 6) { //tunel derecha
+            nextMovementTunel.x = 0
+            nextMovementTunel.y = 6
+            this.characterPos = nextMovementTunel
+        } else if (nextMovementTunel.x-- === 0 && nextMovementTunel.y === 6) { //tunel izquierda
+            nextMovementTunel.x = 17
+            nextMovementTunel.y = 6
+            this.characterPos = nextMovementTunel
+        }
+
+    }
+
+
     setListener() {
         document.addEventListener("keydown", e => {
             switch (e.keyCode) {
                 case this.keys.up:
                     this.direction = "up"
-                    console.log(this.direction)
-                    console.log("veteparriba")
                     break;
                 case this.keys.down:
                     this.direction = "down"
-                    console.log(this.direction)
-                    console.log("vetepabajo")
                     break;
                 case this.keys.left:
                     this.direction = "left"
-                    console.log(this.direction)
-                    console.log("vetepalaizquierda")
                     break;
                 case this.keys.right:
                     this.direction = "right"
-                    console.log(this.direction)
-                    console.log("vetepaladerecha")
                     break;
             }
         });
