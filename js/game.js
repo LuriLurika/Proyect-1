@@ -7,8 +7,8 @@ const german = {
     canvasDom: undefined,
     ctx: undefined,
     canvasSize: {
-        w: window.innerWidth,
-        h: window.innerHeight
+        w: window.innerWidth * 70 / 100,
+        h: window.innerHeight 
     },
     keys: {
         up: 38,
@@ -26,7 +26,7 @@ const german = {
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
     tile: {
-        w: window.innerWidth / 18,
+        w: window.innerWidth * 70 / 100 / 18,
         h: window.innerHeight / 13,
 
     },
@@ -57,6 +57,7 @@ const german = {
 
 
     init(id) {
+        console.log(this.canvasSize)
         this.setDimension(id)
         this.start()
 

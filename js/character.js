@@ -46,24 +46,57 @@ class Character {
         const posPacManY = 0 //tenemos todos los sprites en una row
 
 
+        this.ctx.save();
 
+        const translation = this.calculateTranslation()
+        // nos colocamos a la posición de german
+        this.ctx.translate(translation.x, translation.y);
+
+        // rotate the canvas to the specified degrees
+        this.ctx.rotate(translation.angle * Math.PI / 180);
+
+        // we’re done with the rotating so restore the unrotated context
         this.ctx.drawImage(
             this.image,
             posPacManX, //SX coordenada de imagen
             posPacManY, //SY coordenada de imagen
             this.characterSize.w / framePacMan, //223 width que vamos a coger de la imagen
             this.characterSize.h, // altura que vamos a coger de la imagen
-            this.characterPos.x * this.tile.w, //DX coordenada en la que pintamos
-            this.characterPos.y * this.tile.h, // DY coordenada en que pintamos
+            0, //DX coordenada en la que pintamos
+            0, // DY coordenada en que pintamos
             this.tile.w, //width que va a tener la imagen cuando la pintemosla imagen cuando la pintemos
-            this.tile.h, //height que va a tener la imagen cuando lo pintemos 
-        ) 
-
+            this.tile.h, //height que va a tener la imagen cuando lo pintemos
+        )
+        this.ctx.restore();
         this.animate(framesCounter)
 
     }
-
-
+    calculateTranslation() {
+        let result = {}
+        switch (this.direction) {
+            case "up":
+                result.x = (this.characterPos.x + 0) * this.tile.w
+                result.y = (this.characterPos.y + 1) * this.tile.h
+                result.angle = -90
+                break;
+            case "down":
+                result.x = (this.characterPos.x + 1) * this.tile.w
+                result.y = (this.characterPos.y + 0) * this.tile.h
+                result.angle = 90
+                break;
+            case "left":
+                result.x = (this.characterPos.x + 1) * this.tile.w
+                result.y = (this.characterPos.y + 1) * this.tile.h
+                result.angle = 180
+                break;
+            default:
+                result.x = this.characterPos.x * this.tile.w
+                result.y = this.characterPos.y * this.tile.h
+                result.angle = 0
+                break;
+        }
+        return result
+    }
 
     animate(framesCounter) {
 

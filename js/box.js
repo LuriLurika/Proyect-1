@@ -7,19 +7,19 @@ class Box {
         this.x = x
         this.type = type
     }
- 
-    
-// COLOR DE CADA CASILLA SEGÚN SU TIPO
-        
-    drawBox(ctx, canvasSize, image) {                   
+
+
+    // COLOR DE CADA CASILLA SEGÚN SU TIPO
+
+    drawBox(ctx, canvasSize, image) {
 
         if (this.type === ('wall')) {
             ctx.fillStyle = 'blue'
         } else {
             ctx.fillStyle = 'black'
         }
-
-        ctx.fillRect(this.x * image.w, this.y * image.h, image.w +1, image.h +1)
+        this.canvasSize = canvasSize
+        ctx.fillRect(this.x * image.w, this.y * image.h, image.w + 1, image.h + 1)
     }
 
 }
@@ -38,7 +38,7 @@ const arrBox = [
     new Box(0, 4, 'wall'),
     new Box(0, 5, 'wall'),
     new Box(0, 6, 'wall'),
-    new Box(0, 7, 'wall'), 
+    new Box(0, 7, 'wall'),
     new Box(0, 8, 'wall'),
     new Box(0, 9, 'wall'),
     new Box(0, 10, 'wall'),
