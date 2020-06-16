@@ -1,3 +1,12 @@
+
+ /*─▄█████▄────────────────────────────────────
+ ──███▄██▀─────────────────────────────────────
+ ─▐█████────█────█────█────█────█────█────█────
+ ──██████▄─────────────────────────────────────
+ ───▀█████▀────────────────────────────────────
+ ────Lo hemos intentado muy fuerte-muy fuerte──*/
+
+
 * {
     margin: 0;
     padding: 0;
@@ -6,17 +15,18 @@
 
 @font-face {
     font-family: 'pacfontregular';
-    src: url('../fonts/pac-font-webfont.woff2') format('woff2'), 
-         url('../fonts/pac-font-webfont.woff') format('woff');
+    src: url('../fonts/pac-font-webfont.woff2') format('woff2'),
+        url('../fonts/pac-font-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
-.pantalla-juego{
-   display: none
+
+.pantalla-juego {
+    display: none
 }
 
-#canvasGame { //Don�t set canvas tag width and height through the CSS.
+#canvasGame {
     
     background-color: red;
     border: 10px solid black;
@@ -24,7 +34,7 @@
     display: block;
 }
 
-.left img{
+.left img {
     width: 100%;
     padding: 35px 10px;
 }
@@ -34,11 +44,13 @@
     font-size: 2.5em;
     font-family: 'pacfontregular'
 }
-.letter span{
-    font-size: .8em;;
+
+.letter span {
+    font-size: .8em;
+    ;
 }
 
-.pixel-letter{
+.pixel-letter {
     color: yellow;
     font-size: 2em;
     font-family: 'Press Start 2P', cursive;
@@ -47,3 +59,71 @@
 div {
     background-color: black;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

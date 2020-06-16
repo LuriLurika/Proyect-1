@@ -36,7 +36,7 @@ class Character {
     }
 
 
-    // PINTA PERSONAJE
+    // PINTA PACMAN
 
     draw(framesCounter) {
 
@@ -44,6 +44,9 @@ class Character {
         const frameIndexPacMan = this.image.framesIndex
         const posPacManX = frameIndexPacMan * Math.floor(this.characterSize.w / framePacMan)
         const posPacManY = 0 //tenemos todos los sprites en una row
+
+
+
         this.ctx.drawImage(
             this.image,
             posPacManX, //SX coordenada de imagen
@@ -54,7 +57,8 @@ class Character {
             this.characterPos.y * this.tile.h, // DY coordenada en que pintamos
             this.tile.w, //width que va a tener la imagen cuando la pintemosla imagen cuando la pintemos
             this.tile.h, //height que va a tener la imagen cuando lo pintemos 
-        )
+        ) 
+
         this.animate(framesCounter)
 
     }

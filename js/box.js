@@ -14,9 +14,9 @@ class Box {
     drawBox(ctx, canvasSize, image) {                   
 
         if (this.type === ('wall')) {
-            ctx.fillStyle = 'black'
+            ctx.fillStyle = 'blue'
         } else {
-            ctx.fillStyle = '#B3E363'
+            ctx.fillStyle = 'black'
         }
 
         ctx.fillRect(this.x * image.w, this.y * image.h, image.w +1, image.h +1)
