@@ -16,7 +16,9 @@ class Box {
         if (this.type === ('wall')) {
             ctx.fillStyle = 'blue'
         } else if (this.type === ('ghost')) {
-            ctx.fillStyle = 'red'       
+            ctx.fillStyle = 'red'
+            } else if (this.type === ('wallGhost')) {
+            ctx.fillStyle = 'white'    
         } else {
             ctx.fillStyle = 'black'
         }
@@ -145,10 +147,10 @@ const arrBox = [
     new Box(5, 4, 'wall'),
     new Box(5, 5, 'apple'),
     new Box(5, 6, 'wall'),
-    new Box(5, 7, 'ghost'),
-    new Box(5, 8, 'ghost'),
-    new Box(5, 9, 'ghost'),
-    new Box(5, 10, 'ghost'),
+    new Box(5, 7, 'wallGhost'),
+    new Box(5, 8, 'wallGhost'),
+    new Box(5, 9, 'wallGhost'),
+    new Box(5, 10, 'wallGhost'),
     new Box(5, 11, 'wall'),
     new Box(5, 12, 'apple'),
     new Box(5, 13, 'wall'),

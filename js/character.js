@@ -105,16 +105,24 @@ class Character {
             ...this.characterPos
         }
 
-        if (nextMovementTunel.x++ === 17 && nextMovementTunel.y === 6) { //tunel derecha
+        if (nextMovementTunel.x++ === 18 && nextMovementTunel.y === 6) { //tunel derecha
             nextMovementTunel.x = 0
             nextMovementTunel.y = 6
             this.characterPos = nextMovementTunel
         } else if (nextMovementTunel.x-- === 0 && nextMovementTunel.y === 6) { //tunel izquierda
-            nextMovementTunel.x = 17
+            nextMovementTunel.x = 18
             nextMovementTunel.y = 6
             this.characterPos = nextMovementTunel
         }
 
+    }
+
+    eatApple(arrayApple, onAppleEaten) {
+            const apples= arrayApple.filter(elm =>
+            elm.x === this.characterPos.x && elm.y === this.characterPos.y);
+        if (apples.length > 0) {
+            onAppleEaten(apples[0])
+        } 
     }
 
 

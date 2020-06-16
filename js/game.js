@@ -21,7 +21,7 @@ const german = {
 
     arrayApple: arrBox.filter(elm => elm.type === 'apple'),
     arrayIron: arrBox.filter(elm => elm.type === 'ironhack'),
-    arrayWall: arrBox.filter(elm => elm.type === 'wall'),
+    arrayWall: arrBox.filter(elm => elm.type === 'wall' || elm.type === 'wallGhost'),
 
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
@@ -72,14 +72,17 @@ const german = {
 
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
             this.clear()
+            this.drawWall()
             this.drawPacman()
+            this.drawPills()
+
 
         }, 10000 / this.fps)
 
     },
 
     clear() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
     },
 
     //PINTAR CASILLAS
@@ -93,17 +96,23 @@ const german = {
     drawPacman() {
         this.pacman.move(this.arrayWall)
         this.pacman.draw(this.framesCounter)
+        this.pacman.eatApple(this.arrayApple, appleEaten => {
+            this.arrayApple = [...this.arrayApple].filter(elm => {
+                return elm.x !== appleEaten.x || elm.y !== appleEaten.y
+            })
 
+        })
     },
 
 
     //PINTAR MANZANAS Y LOGO IRONHACK EN SU CASILLA
 
     drawPills() {
-
         this.apple = this.arrayApple.forEach(elm => {
             this.drawImage('apple.png', elm.y * this.tile.h + 20, elm.x * this.tile.w + 20, this.tile.w - 40, this.tile.h - 40)
+
         })
+
 
 
 
@@ -115,6 +124,8 @@ const german = {
                 this.tile.h - 10)
         })
     },
+
+    
 
     //PINTAR PACMAN EN SU POSICION INICIAL
 
