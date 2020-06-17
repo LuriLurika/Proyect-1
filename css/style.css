@@ -93,3 +93,14 @@ span.pixel-letter {
     font-size: .7em;
     line-height: .7em;
 }
+
+.inst {
+    color: yellow;
+    font-size: 20px;
+    font-family: monospace;
+    text-align: center;
+}
+
+.marg {
+    margin-top: 40px;
+}

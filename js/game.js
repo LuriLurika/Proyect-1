@@ -23,6 +23,9 @@ const german = {
     arrayIron: arrBox.filter(elm => elm.type === 'ironhack'),
     arrayWall: arrBox.filter(elm => elm.type === 'wall' || elm.type === 'wallGhost'),
 
+    apples: arrBox.filter(elm => elm.type === 'apple'),
+    irons: arrBox.filter(elm => elm.type === 'ironhack'),
+
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
     tile: {
@@ -42,6 +45,8 @@ const german = {
     },
 
     direction: undefined,
+    
+    score: 0,
 
     pacman: undefined,
     apple: undefined,
@@ -57,11 +62,17 @@ const german = {
     framesCounter: 0,
     fps: 60,
 
+    sound_game: undefined,
+
+
 
 
     init(id) {
         this.setDimension(id)
         this.start()
+        this.sound_game = new Audio("mp3/waka.mp3")
+        this.sound_game.play()
+
 
     },
 
@@ -77,6 +88,11 @@ const german = {
     start() {
 
         this.reset()
+
+         
+
+
+
 
         setInterval(() => {
 
@@ -108,6 +124,9 @@ const german = {
         })
     },
 
+    
+
+
     //CREAR PACMAN
 
     createPacman() {
@@ -128,13 +147,13 @@ const german = {
                 this.kike.addMovementToPath(newMov)
                 this.laura.addMovementToPath(newMov)
                 this.escarlata.addMovementToPath(newMov)
-                
+
             }
-            
+
         )
     },
 
-    //LLAMA APINTAR PACMAN, LLAMAR MOVIMIENTO Y LLAMAR A COMER MANZANAS
+    //LLAMA A PINTAR PACMAN, LLAMAR MOVIMIENTO Y LLAMAR A COMER MANZANAS
 
     drawPacman() {
         this.pacman.move(this.arrayWall)
@@ -143,12 +162,18 @@ const german = {
             this.arrayApple = [...this.arrayApple].filter(elm => {
                 return elm.x !== appleEaten.x || elm.y !== appleEaten.y
             })
+            // SUMAR 10 PUNTOS POR CADA MANZANA
+            this.score +=10
+            const score = document.querySelector('#counter').innerText = this.score
 
         })
         this.pacman.eatIron(this.arrayIron, ironEaten => {
             this.arrayIron = [...this.arrayIron].filter(elm => {
                 return elm.x !== ironEaten.x || elm.y !== ironEaten.y
             })
+            // SUMAR 10 PUNTOS POR CADA IRONHACK
+            this.score += 10
+            const score = document.querySelector('#counter').innerText = this.score
         })
     },
 
@@ -172,7 +197,8 @@ const german = {
 
     // CREAR FANTASthis.arrayWallA CLASE GHOST
 
-    createGhost() {this.arrayWall
+    createGhost() {
+        this.arrayWall
         this.dayan = new Ghost(
             this.ctx,
             this.image.w,
@@ -247,6 +273,19 @@ const german = {
         let image = new Image()
         image.src = `/img/${name}`
         this.ctx.drawImage(image, posY, posX, w, h)
+    },
+
+    sound(src) {
+        console.log("SUENAAA?")
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.sound.play();
+
+
     },
 
 

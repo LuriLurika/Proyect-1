@@ -28,7 +28,7 @@ class Ghost {
 
         this.index = 0
 
-        this.vel = 1
+        this.vel = 0.3
         this.arrayGhost = arrayGhost
 
     }

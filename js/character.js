@@ -168,10 +168,13 @@ class Character {
         let counter_apple = 0
         const apples = arrayApple.filter(elm =>
             elm.x === this.characterPos.x && elm.y === this.characterPos.y);
+        
         if (apples.length > 0) {
             onAppleEaten(apples[0])
-
+            
+            
         }
+
     }
 
     eatIron(arrayIron, onIronEaten) {
@@ -179,7 +182,9 @@ class Character {
             elm.x === this.characterPos.x && elm.y === this.characterPos.y)
         if (ironhack.length > 0) {
             onIronEaten(ironhack[0])
+             
         }
+       
     }
 
     setListener() {
