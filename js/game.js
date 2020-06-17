@@ -26,7 +26,7 @@ const german = {
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
     tile: {
-        w: window.innerWidth *70/100 / 18,
+        w: window.innerWidth * 70 / 100 / 18,
         h: window.innerHeight / 13,
 
     },
@@ -48,7 +48,10 @@ const german = {
     iron: undefined,
     background: undefined,
 
-    ghost_1: undefined,
+    dayan: undefined,
+    kike: undefined,
+    laura: undefined,
+    escarlata: undefined,
 
 
     framesCounter: 0,
@@ -83,6 +86,7 @@ const german = {
             this.drawPacman()
             this.drawPills()
             this.drawGhost()
+            this.dayan.moveGhost()
 
 
         }, 10000 / this.fps)
@@ -93,13 +97,33 @@ const german = {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
     },
 
-    //PINTAR CASILLAS
+    //PINTAR MUROS
 
     drawWall() {
         this.background = arrBox.forEach(elm => {
             elm.drawBox(this.ctx, this.canvasSize, this.tile)
         })
     },
+
+    //CREAR PACMAN
+
+    createPacman() {
+        this.pacman = new Character(
+            this.ctx,
+            this.image.w,
+            this.image.h,
+            5,
+            7,
+            "pacman.png",
+            this.keys,
+            this.arrayWall,
+            this.tile.w,
+            this.tile.h,
+            this.direction
+        )
+    },
+
+    //LLAMA APINTAR PACMAN, LLAMAR MOVIMIENTO Y LLAMAR A COMER MANZANAS
 
     drawPacman() {
         this.pacman.move(this.arrayWall)
@@ -126,9 +150,6 @@ const german = {
 
         })
 
-
-
-
         this.iron = this.arrayIron.forEach(elm => {
             this.drawImage('ironhack.png',
                 elm.y * this.tile.h + 5,
@@ -138,8 +159,10 @@ const german = {
         })
     },
 
+    // CREAR FANTASMAS HACIENDO INSTANCIAS DE LA CLASE GHOST
+
     createGhost() {
-        this.ghost_1 = new Ghost(
+        this.dayan = new Ghost(
             this.ctx,
             this.image.w,
             this.image.h,
@@ -151,7 +174,7 @@ const german = {
             this.tile.h,
             this.direction)
 
-        this.ghost_2 = new Ghost(
+        this.kike = new Ghost(
             this.ctx,
             this.image.w,
             this.image.h,
@@ -163,7 +186,7 @@ const german = {
             this.tile.h,
             this.direction)
 
-        this.ghost_3 = new Ghost(
+        this.laura = new Ghost(
             this.ctx,
             this.image.w,
             this.image.h,
@@ -175,7 +198,7 @@ const german = {
             this.tile.h,
             this.direction)
 
-        this.ghost_4 = new Ghost(
+        this.escarlata = new Ghost(
             this.ctx,
             this.image.w,
             this.image.h,
@@ -188,14 +211,16 @@ const german = {
             this.direction)
     },
 
+    //PINTAR FANTASMAS
+
     drawGhost() {
-        this.ghost_1.draw(this.framesCounter)
-        this.ghost_2.draw(this.framesCounter)
-        this.ghost_3.draw(this.framesCounter)
-        this.ghost_4.draw(this.framesCounter)
+        this.dayan.draw(this.framesCounter)
+        this.kike.draw(this.framesCounter)
+        this.laura.draw(this.framesCounter)
+        this.escarlata.draw(this.framesCounter)
     },
 
-    //PINTAR PACMAN EN SU POSICION INICIAL
+    //PINTAR TODO EN SU POSICION INICIAL
 
     reset() {
         this.createPacman()
@@ -204,26 +229,8 @@ const german = {
         this.createGhost()
     },
 
-    createPacman() {
-        this.pacman = new Character(
-            this.ctx,
-            this.image.w,
-            this.image.h,
-            5,
-            7,
-            "pacman.png",
-            this.keys,
-            this.arrayWall,
-            this.tile.w,
-            this.tile.h,
-            this.direction
 
-        )
-    },
-
-
-
-    //MÉTODO DE APOYO PARA CARGAR IMÁGENES
+    //MÉTODO PARA CARGAR IMÁGENES
 
     drawImage(name, posX, posY, w, h) {
         let image = new Image()

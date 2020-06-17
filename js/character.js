@@ -138,8 +138,8 @@ class Character {
                 break;
         }
         if (arrayWall.filter(elm =>
-            elm.x === nextMovement.x && elm.y === nextMovement.y
-        ).length > 0) { } else {
+                elm.x === nextMovement.x && elm.y === nextMovement.y
+            ).length > 0) {} else {
             this.characterPos = nextMovement
             this.moveTunel()
         }
@@ -163,10 +163,12 @@ class Character {
     }
 
     eatApple(arrayApple, onAppleEaten) {
+        let counter_apple = 0
         const apples = arrayApple.filter(elm =>
             elm.x === this.characterPos.x && elm.y === this.characterPos.y);
         if (apples.length > 0) {
             onAppleEaten(apples[0])
+
         }
     }
 

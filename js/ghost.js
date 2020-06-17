@@ -27,9 +27,9 @@ class Ghost {
             h: tileH
         }
 
-        this.direction = direction
+        this.direction = "up"
 
-        this.vel = 2
+        this.vel = 1
 
     }
 
@@ -67,53 +67,10 @@ class Ghost {
         }
     }
 
-    move(arrayWall) {
-
-        const nextMovement = {
-            ...this.ghostPosition
-        }
-        switch (this.direction) {
-            case "up":
-                nextMovement.y--
-                break;
-            case "down":
-                nextMovement.y++
-                break;
-            case "left":
-                nextMovement.x--
-                break;
-            case "right":
-                nextMovement.x++
-                break;
-        }
-        if (arrayWall.filter(elm =>
-                elm.x === nextMovement.x && elm.y === nextMovement.y
-            ).length > 0) {} else {
-            this.ghostPosition = nextMovement
-            this.moveTunel()
-        }
-    }
-
-    moveTunel() {
-        const nextMovementTunel = {
-            ...this.ghostPosition
-        }
-
-        if (nextMovementTunel.x++ === 18 && nextMovementTunel.y === 6) { //tunel derecha
-            nextMovementTunel.x = 0
-            nextMovementTunel.y = 6
-            this.ghostPosition = nextMovementTunel
-        } else if (nextMovementTunel.x-- === 0 && nextMovementTunel.y === 6) { //tunel izquierda
-            nextMovementTunel.x = 18
-            nextMovementTunel.y = 6
-            this.ghostPosition = nextMovementTunel
-        }
+    moveGhost() {
+       
+        
 
     }
-
-    createGhost1() {
-
-    }
-
 
 }

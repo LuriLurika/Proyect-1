@@ -1,1 +1,1 @@
-german.init('canvasGame')
+//german.init('canvasGame')
