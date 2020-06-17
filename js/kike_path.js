@@ -8,6 +8,16 @@ class KikePath {
 
 arrayKike = [
     new KikePath(5, 8),
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
+    new KikePath(5, 8),  
     new KikePath(4, 8),
     new KikePath(4, 9),
     new KikePath(4, 10),

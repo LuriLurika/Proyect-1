@@ -87,6 +87,9 @@ const german = {
             this.drawPills()
             this.drawGhost()
             this.dayan.moveGhost()
+            this.kike.moveGhost()
+            this.laura.moveGhost()
+            this.escarlata.moveGhost()
 
 
         }, 10000 / this.fps)
@@ -119,7 +122,15 @@ const german = {
             this.arrayWall,
             this.tile.w,
             this.tile.h,
-            this.direction
+            this.direction,
+            newMov => {
+                this.dayan.addMovementToPath(newMov)
+                this.kike.addMovementToPath(newMov)
+                this.laura.addMovementToPath(newMov)
+                this.escarlata.addMovementToPath(newMov)
+                
+            }
+            
         )
     },
 
@@ -146,7 +157,7 @@ const german = {
 
     drawPills() {
         this.apple = this.arrayApple.forEach(elm => {
-            this.drawImage('apple.png', elm.y * this.tile.h + 20, elm.x * this.tile.w + 20, this.tile.w - 40, this.tile.h - 40)
+            this.drawImage('apple.png', elm.y * this.tile.h + 15, elm.x * this.tile.w + 15, this.tile.w - 30, this.tile.h - 30)
 
         })
 
@@ -159,9 +170,9 @@ const german = {
         })
     },
 
-    // CREAR FANTASMAS HACIENDO INSTANCIAS DE LA CLASE GHOST
+    // CREAR FANTASthis.arrayWallA CLASE GHOST
 
-    createGhost() {
+    createGhost() {this.arrayWall
         this.dayan = new Ghost(
             this.ctx,
             this.image.w,
@@ -169,7 +180,7 @@ const german = {
             5,
             7,
             "ghost_sprites_rosa.png",
-            this.arrayWall,
+            arrayDayan,
             this.tile.w,
             this.tile.h,
             this.direction)
@@ -181,7 +192,7 @@ const german = {
             5,
             8,
             "ghost_sprites_azul.png",
-            this.arrayWall,
+            arrayKike,
             this.tile.w,
             this.tile.h,
             this.direction)
@@ -193,7 +204,7 @@ const german = {
             5,
             9,
             "ghost_sprites_rojo.png",
-            this.arrayWall,
+            arrayLaura,
             this.tile.w,
             this.tile.h,
             this.direction)
@@ -205,7 +216,7 @@ const german = {
             5,
             10,
             "ghost_sprites_naranja.png",
-            this.arrayWall,
+            arrayEscarlata,
             this.tile.w,
             this.tile.h,
             this.direction)

@@ -1,6 +1,6 @@
 class Ghost {
 
-    constructor(ctx, w, h, y, x, name, arrayWall, tileW, tileH, direction) {
+    constructor(ctx, w, h, y, x, name, arrayGhost, tileW, tileH) {
 
         this.ctx = ctx
 
@@ -20,16 +20,16 @@ class Ghost {
         this.image.frames = 4
         this.image.framesIndex = 0
 
-        this.arrayWall = arrayWall
-
+       
         this.tile = {
             w: tileW,
             h: tileH
         }
 
-        this.direction = "up"
+        this.index = 0
 
         this.vel = 1
+        this.arrayGhost = arrayGhost
 
     }
 
@@ -46,8 +46,8 @@ class Ghost {
             posY,
             this.ghostSize.w / frame,
             this.ghostSize.h,
-            this.ghostPosition.x * this.tile.w,
-            this.ghostPosition.y * this.tile.h,
+            this.arrayGhost[this.index].x * this.tile.w,
+            this.arrayGhost[this.index].y * this.tile.h,
             this.tile.w,
             this.tile.h,
 
@@ -69,8 +69,12 @@ class Ghost {
 
     moveGhost() {
        
-        
+        this.index ++
 
+    }
+
+    addMovementToPath(newMov) {
+        this.arrayGhost.push(newMov)
     }
 
 }

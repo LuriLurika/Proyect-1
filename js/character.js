@@ -1,6 +1,6 @@
 class Character {
 
-    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall, tileW, tileH, direction) {
+    constructor(ctx, imageW, imageH, posX, posY, name, keys, arrayWall, tileW, tileH, direction, onNewMovement) {
         this.ctx = ctx
 
         this.characterSize = {
@@ -33,6 +33,7 @@ class Character {
 
         this.setListener()
 
+        this.onNewMovement = onNewMovement
     }
 
 
@@ -142,6 +143,7 @@ class Character {
             ).length > 0) {} else {
             this.characterPos = nextMovement
             this.moveTunel()
+            this.onNewMovement(nextMovement)
         }
     }
 
