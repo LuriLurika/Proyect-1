@@ -51,6 +51,10 @@ const german = {
     framesCounter: 0,
     fps: 30,
 
+    pacmanStatus: 'normal',
+    ironTime: 0,
+    totalTime: 10,
+
 
     sound_pill: new Audio("mp3/waka.mp3"),
     sound_power_pill: new Audio('mp3/powepill.mp3'),
@@ -91,7 +95,7 @@ const german = {
             this.escarlata.moveGhost()
             this.checkGhostCollision() ? this.gameOver() : null
 
-        }, 10000 / this.fps)
+        }, 9000 / this.fps)
 
     },
 
@@ -130,7 +134,6 @@ const german = {
                 this.escarlata.addMovementToPath(newMov)
                 this.checkGhostCollision(newMov)
 
-
             }
 
         )
@@ -153,7 +156,8 @@ const german = {
                 return elm.x !== appleEaten.x || elm.y !== appleEaten.y
             })
             //SONIDITOS MOLONGUIS
-            this.sound_pill.play()
+            //this.sound_pill.play()
+
             // SUMAR 10 PUNTOS POR CADA MANZANA
             this.score += 10
             this.updateScore()
@@ -169,6 +173,8 @@ const german = {
             // SUMAR 10 PUNTOS POR CADA IRONHACK
             this.score += 10
             this.updateScore()
+            this.setterStatus('super')
+            this.chronometer()
         })
 
 
@@ -273,28 +279,47 @@ const german = {
         const pacEscarlata = (this.pacman.characterPos.x === this.escarlata.getCurrentPosition().x) && (this.pacman.characterPos.y === this.escarlata.getCurrentPosition().y)
 
         if (pacDayan || pacKike || pacLaura || pacEscarlata) {
-
-            this.gameOver()
-            document.getElementById("merluzo").style.display = 'block'
-            document.getElementById("canvasGame").style.display = 'none'
-            setTimeout(function () {
-
-                document.getElementById("merluzo").style.display = 'none'
-
-            }, 1000)
-
-
-
+            if (this.pacmanStatus === 'super') {
+                this.ghostReset()
+            } else {
+                this.gameOver()
+            
+                document.getElementById("merluzo").style.display = 'block'
+                document.getElementById("canvasGame").style.display = 'none'
+                setTimeout(function () {
+                    document.getElementById("merluzo").style.display = 'none'
+                }, 1000)
+            }
         }
+    },
+
+    setterStatus(status){
+        this.pacmanStatus = status
     },
 
     gameOver() {
         clearInterval(this.interval)
         this.start()
         this.drawPills()
+    },
 
+    
 
+    chronometer() {
+        
+        document.getElementById('countdown').innerHTML = this.totalTime;
+        if (this.totalTime == 0) {
+            this.totalTime = 10
+            this.setterStatus('normal')
 
+        } else {
+            this.totalTime -= 1
+            setTimeout(()=>this.chronometer(), 1000)
+        }
+    },
+
+    ghostReset() {
+       this.createGhost()
     },
 
 

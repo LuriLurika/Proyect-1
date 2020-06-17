@@ -34,9 +34,8 @@ class Box {
     drawBox(ctx, canvasSize, image) {
 
         if (this.type === ('wall')) {
-            //ctx.fillStyle = 'blue'   PARA QUE SE RELLENE FALTA PONER EL FILL() EN ROUNDRECT
-
-            //ASÍ SE LLAMA AL MÉTODO DE LAS CAJITAS REDONDAS
+            
+        //ASÍ SE LLAMA AL MÉTODO DE LAS CAJITAS REDONDAS. PARA QUE SE RELLENE FALTA PONER EL FILL() EN ROUNDRECT
             this.roundedRect(ctx,
                 this.x * image.w,
                 this.y * image.h,
