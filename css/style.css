@@ -1,42 +1,93 @@
+
+ /*─▄█████▄────────────────────────────────────
+ ──███▄██▀─────────────────────────────────────
+ ─▐█████────█────█────█────█────█────█────█────
+ ──██████▄─────────────────────────────────────
+ ───▀█████▀────────────────────────────────────
+ ────Lo hemos intentado muy fuerte-muy fuerte──*/
+
+
+/*----------GLOBAL---------*/
 * {
     margin: 0;
     padding: 0;
+    cursor: initial;
+}
+
+@font-face {
+    font-family: 'pacfontregular';
+    src: url('../fonts/pac-font-webfont.woff2') format('woff2'), 
+         url('../fonts/pac-font-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
     background-color: black;
 }
 
-
-div {
-    display: inline;
-    height: 100vh;
-    width: 100vw;
+.pixel-letter{
+    color: yellow;
+    font-size: 1.5em;
+    font-family: 'Press Start 2P', cursive;
+    
 }
 
-.rigth {
-    float: right;
-    width: 70%;
+.letter {
+    color: yellow;
+    font-size: 2.2em;
+    font-family: 'pacfontregular';
 }
 
-.left {
-    background-color: grey;
-    width: 00%;
-    float: left;
+/*----------PANTALLA INICIO---------*/
+
+.pantalla-inicio button{
+    padding: 25px 45px;
+    margin: 70px 0;
+}
+
+svg {
+    color: white;
+}
+
+.blink {
+  animation: blinker 1s  cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: .4;
+  }
 }
 
 
-.left img {
-    margin-top: 50px;
+.notDisplayed {display:none  !important}
+
+/*----------PANTALLA JUEGO---------*/
+
+.pantalla-juego{
+   display: none
 }
 
-.splash {
-    position: absolute;
-    height: 100%;
+/*----------PANTALLA JUEGO -- IZQUIERDA ---------*/
+.left img{
     width: 100%;
-    background-color: black;
+    padding: 35px 10px;
+}
+/*----------PANTALLA JUEGO -- DERECHA ---------*/
+#canvasGame {
+    
+    margin: 0 auto;
+    display: block;
 }
 
-.invisible{
-    display: none
+.letter span{
+    font-size: .8em;;
 }
+
+span.pixel-letter {
+    font-size: .7em;
+    line-height: .7em;  
+}
+
+

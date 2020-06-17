@@ -36,7 +36,7 @@ class Character {
     }
 
 
-    // PINTA PACMAN
+    // PINTA PERSONAJE
 
     draw(framesCounter) {
 
@@ -56,21 +56,27 @@ class Character {
         this.ctx.rotate(translation.angle * Math.PI / 180);
 
         // we’re done with the rotating so restore the unrotated context
+
         this.ctx.drawImage(
             this.image,
             posPacManX, //SX coordenada de imagen
             posPacManY, //SY coordenada de imagen
             this.characterSize.w / framePacMan, //223 width que vamos a coger de la imagen
             this.characterSize.h, // altura que vamos a coger de la imagen
-            0, //DX coordenada en la que pintamos
-            0, // DY coordenada en que pintamos
+            0,
+            0,
+            //this.characterPos.x * this.tile.w, //DX coordenada en la que pintamos
+            //this.characterPos.y * this.tile.h, // DY coordenada en que pintamos
             this.tile.w, //width que va a tener la imagen cuando la pintemosla imagen cuando la pintemos
             this.tile.h, //height que va a tener la imagen cuando lo pintemos
         )
+
         this.ctx.restore();
         this.animate(framesCounter)
 
     }
+
+
     calculateTranslation() {
         let result = {}
         switch (this.direction) {
@@ -98,6 +104,7 @@ class Character {
         return result
     }
 
+
     animate(framesCounter) {
 
         if (framesCounter % 1 == 0) {
@@ -108,7 +115,6 @@ class Character {
             this.image.framesIndex = 0;
         }
     }
-
 
 
 
@@ -132,8 +138,8 @@ class Character {
                 break;
         }
         if (arrayWall.filter(elm =>
-                elm.x === nextMovement.x && elm.y === nextMovement.y
-            ).length > 0) {} else {
+            elm.x === nextMovement.x && elm.y === nextMovement.y
+        ).length > 0) { } else {
             this.characterPos = nextMovement
             this.moveTunel()
         }
@@ -171,8 +177,6 @@ class Character {
             onIronEaten(ironhack[0])
         }
     }
-    //
-
 
     setListener() {
         document.addEventListener("keydown", e => {
@@ -193,17 +197,5 @@ class Character {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

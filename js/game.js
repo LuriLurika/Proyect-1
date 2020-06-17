@@ -8,7 +8,7 @@ const german = {
     ctx: undefined,
     canvasSize: {
         w: window.innerWidth * 70 / 100,
-        h: window.innerHeight 
+        h: window.innerHeight
     },
     keys: {
         up: 38,
@@ -26,7 +26,7 @@ const german = {
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
     tile: {
-        w: window.innerWidth * 70 / 100 / 18,
+        w: window.innerWidth *70/100 / 18,
         h: window.innerHeight / 13,
 
     },
@@ -57,7 +57,6 @@ const german = {
 
 
     init(id) {
-        console.log(this.canvasSize)
         this.setDimension(id)
         this.start()
 
@@ -151,7 +150,7 @@ const german = {
             this.tile.w,
             this.tile.h,
             this.direction)
-        
+
         this.ghost_2 = new Ghost(
             this.ctx,
             this.image.w,
@@ -163,7 +162,7 @@ const german = {
             this.tile.w,
             this.tile.h,
             this.direction)
-        
+
         this.ghost_3 = new Ghost(
             this.ctx,
             this.image.w,
@@ -175,7 +174,7 @@ const german = {
             this.tile.w,
             this.tile.h,
             this.direction)
-        
+
         this.ghost_4 = new Ghost(
             this.ctx,
             this.image.w,

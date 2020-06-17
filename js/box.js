@@ -8,18 +8,71 @@ class Box {
         this.type = type
     }
 
+    //MÉTODO AUXILIAR PARA PINTAR LAS CAJITAS REDONDAS
+
+    roundedRect(ctx, x, y, width, height, radius) {
+        ctx.strokeStyle = 'purple';
+        ctx.lineWidth = 7;
+
+        //https://developer.mozilla.org/es/docs/Web/Guide/HTML/Canvas_tutorial/Dibujando_formas
+        ctx.beginPath();
+        ctx.moveTo(x, y + radius);
+        ctx.lineTo(x, y + height - radius);
+        ctx.quadraticCurveTo(x, y + height, x + radius, y + height);
+        ctx.lineTo(x + width - radius, y + height);
+        ctx.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
+        ctx.lineTo(x + width, y + radius);
+        ctx.quadraticCurveTo(x + width, y, x + width - radius, y);
+        ctx.lineTo(x + radius, y);
+        ctx.quadraticCurveTo(x, y, x, y + radius);
+        ctx.stroke();
+
+
+        // ctx.beginPath();
+        // ctx.moveTo(x, y + radius);
+        // ctx.lineTo(x, y + height - radius);
+        // ctx.arcTo(x, y + height, x + radius, y + height, radius);
+        // ctx.lineTo(x + width - radius, y + height);
+        // ctx.closePath(); //LÍNEA DIAGONAL
+        // ctx.arcTo(x + width, y + height, x + width, y + height - radius, radius);
+        // ctx.lineTo(x + width, y + radius);
+        // ctx.arcTo(x + width, y, x + width - radius, y, radius);
+        // ctx.lineTo(x + radius, y);
+        // ctx.arcTo(x, y, x, y + radius, radius);
+        // ctx.lineJoin = "round";
+        // ctx.stroke();
+
+    }
+
 
     // COLOR DE CADA CASILLA SEGÚN SU TIPO
 
     drawBox(ctx, canvasSize, image) {
 
         if (this.type === ('wall')) {
-            ctx.fillStyle = 'blue'
+            //ctx.fillStyle = 'blue'   PARA QUE SE RELLENE FALTA PONER EL FILL() EN ROUNDRECT
+
+            //ASÍ SE LLAMA AL MÉTODO DE LAS CAJITAS REDONDAS
+            this.roundedRect(ctx,
+                this.x * image.w,
+                this.y * image.h,
+                image.w,
+                image.h,
+                5);
+
+
+        } else if (this.type === ('ghost')) {
+            ctx.fillStyle = 'yellow'
+        } else if (this.type === ('tunnel')) {
+            ctx.fillStyle = 'green'
         } else {
             ctx.fillStyle = 'black'
         }
-        this.canvasSize = canvasSize
-        ctx.fillRect(this.x * image.w, this.y * image.h, image.w + 1, image.h + 1)
+
+        //ctx.fillRect(this.x * image.w, this.y * image.h, image.w, image.h)
+
+
+
     }
 
 }
