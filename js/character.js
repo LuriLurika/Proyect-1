@@ -166,13 +166,13 @@ class Character {
 
     eatApple(arrayApple, onAppleEaten) {
         let counter_apple = 0
-        const apples = arrayApple.filter(elm =>
+        let appleArrayCopia = [...arrayApple]
+        const apples = appleArrayCopia.filter(elm =>
             elm.x === this.characterPos.x && elm.y === this.characterPos.y);
-        
+
         if (apples.length > 0) {
             onAppleEaten(apples[0])
-            
-            
+
         }
 
     }
@@ -182,10 +182,12 @@ class Character {
             elm.x === this.characterPos.x && elm.y === this.characterPos.y)
         if (ironhack.length > 0) {
             onIronEaten(ironhack[0])
-             
+           
         }
-       
+
     }
+
+   
 
     setListener() {
         document.addEventListener("keydown", e => {

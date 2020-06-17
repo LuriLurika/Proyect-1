@@ -23,8 +23,8 @@ const german = {
     arrayIron: arrBox.filter(elm => elm.type === 'ironhack'),
     arrayWall: arrBox.filter(elm => elm.type === 'wall' || elm.type === 'wallGhost'),
 
-    apples: arrBox.filter(elm => elm.type === 'apple'),
-    irons: arrBox.filter(elm => elm.type === 'ironhack'),
+    scoreApples: arrBox.filter(elm => elm.type === 'apple'),
+    scoreIrons: arrBox.filter(elm => elm.type === 'ironhack'),
 
     //MEDIDA PORCENTUAL DE CADA CASILLA
 
@@ -45,24 +45,15 @@ const german = {
     },
 
     direction: undefined,
-    
+
     score: 0,
 
-    pacman: undefined,
-    apple: undefined,
-    iron: undefined,
-    background: undefined,
-
-    dayan: undefined,
-    kike: undefined,
-    laura: undefined,
-    escarlata: undefined,
-
-
     framesCounter: 0,
-    fps: 60,
+    fps: 30,
 
-    sound_game: undefined,
+
+    sound_pill: new Audio("mp3/waka.mp3"),
+    sound_power_pill: new Audio('mp3/powepill.mp3'),
 
 
 
@@ -70,10 +61,6 @@ const german = {
     init(id) {
         this.setDimension(id)
         this.start()
-        this.sound_game = new Audio("mp3/waka.mp3")
-        this.sound_game.play()
-
-
     },
 
     //DIMENSIONES DEL MAPA
@@ -89,12 +76,8 @@ const german = {
 
         this.reset()
 
-         
 
-
-
-
-        setInterval(() => {
+        this.interval = setInterval(() => {
 
             this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
             this.clear()
@@ -106,7 +89,7 @@ const german = {
             this.kike.moveGhost()
             this.laura.moveGhost()
             this.escarlata.moveGhost()
-
+            this.checkGhostCollision() ? this.gameOver() : null
 
         }, 10000 / this.fps)
 
@@ -123,8 +106,6 @@ const german = {
             elm.drawBox(this.ctx, this.canvasSize, this.tile)
         })
     },
-
-    
 
 
     //CREAR PACMAN
@@ -147,34 +128,57 @@ const german = {
                 this.kike.addMovementToPath(newMov)
                 this.laura.addMovementToPath(newMov)
                 this.escarlata.addMovementToPath(newMov)
+                this.checkGhostCollision(newMov)
+
 
             }
 
         )
     },
 
+    updateScore() {
+        const score = document.querySelector('#counter').innerText = this.score
+    },
+
+
     //LLAMA A PINTAR PACMAN, LLAMAR MOVIMIENTO Y LLAMAR A COMER MANZANAS
 
     drawPacman() {
+        let appleCopy, ironCopy
         this.pacman.move(this.arrayWall)
         this.pacman.draw(this.framesCounter)
         this.pacman.eatApple(this.arrayApple, appleEaten => {
+
             this.arrayApple = [...this.arrayApple].filter(elm => {
                 return elm.x !== appleEaten.x || elm.y !== appleEaten.y
             })
+            //SONIDITOS MOLONGUIS
+            this.sound_pill.play()
             // SUMAR 10 PUNTOS POR CADA MANZANA
-            this.score +=10
-            const score = document.querySelector('#counter').innerText = this.score
+            this.score += 10
+            this.updateScore()
 
         })
         this.pacman.eatIron(this.arrayIron, ironEaten => {
             this.arrayIron = [...this.arrayIron].filter(elm => {
                 return elm.x !== ironEaten.x || elm.y !== ironEaten.y
             })
+            //SONIDITOS MOLONGUIS
+            this.sound_power_pill.play()
+
             // SUMAR 10 PUNTOS POR CADA IRONHACK
             this.score += 10
-            const score = document.querySelector('#counter').innerText = this.score
+            this.updateScore()
         })
+
+
+        if (this.arrayApple.length === 0 && this.arrayIron.length === 0) {
+            setTimeout(function () {
+                document.getElementById("pum").style.display = "block"
+                document.getElementById("canvasGame").style.display = "none"
+            }, 2000)
+            document.getElementById("pum").style.display = "none"
+        }
     },
 
 
@@ -194,6 +198,7 @@ const german = {
                 this.tile.h - 10)
         })
     },
+
 
     // CREAR FANTASthis.arrayWallA CLASE GHOST
 
@@ -248,6 +253,7 @@ const german = {
             this.direction)
     },
 
+
     //PINTAR FANTASMAS
 
     drawGhost() {
@@ -257,6 +263,41 @@ const german = {
         this.escarlata.draw(this.framesCounter)
     },
 
+    //COLISIONES CON FANTASMAS
+
+    checkGhostCollision(pacmanPos) {
+
+        const pacDayan = (this.pacman.characterPos.x === this.dayan.getCurrentPosition().x) && (this.pacman.characterPos.y === this.dayan.getCurrentPosition().y)
+        const pacKike = (this.pacman.characterPos.x === this.kike.getCurrentPosition().x) && (this.pacman.characterPos.y === this.kike.getCurrentPosition().y)
+        const pacLaura = (this.pacman.characterPos.x === this.laura.getCurrentPosition().x) && (this.pacman.characterPos.y === this.laura.getCurrentPosition().y)
+        const pacEscarlata = (this.pacman.characterPos.x === this.escarlata.getCurrentPosition().x) && (this.pacman.characterPos.y === this.escarlata.getCurrentPosition().y)
+
+        if (pacDayan || pacKike || pacLaura || pacEscarlata) {
+
+            this.gameOver()
+            document.getElementById("merluzo").style.display = 'block'
+            document.getElementById("canvasGame").style.display = 'none'
+            setTimeout(function () {
+
+                document.getElementById("merluzo").style.display = 'none'
+
+            }, 1000)
+
+
+
+        }
+    },
+
+    gameOver() {
+        clearInterval(this.interval)
+        this.start()
+        this.drawPills()
+
+
+
+    },
+
+
     //PINTAR TODO EN SU POSICION INICIAL
 
     reset() {
@@ -264,8 +305,14 @@ const german = {
         this.drawWall()
         this.drawPills()
         this.createGhost()
+        this.arrayApple = arrBox.filter(elm => elm.type === 'apple')
+        this.arrayIron = arrBox.filter(elm => elm.type === 'ironhack')
+        this.scoreApples = arrBox.filter(elm => elm.type === 'apple')
+        this.scoreIrons = arrBox.filter(elm => elm.type === 'ironhack')
+        //llamando a método?
+        this.score = 0
+        this.updateScore()
     },
-
 
     //MÉTODO PARA CARGAR IMÁGENES
 
@@ -274,20 +321,5 @@ const german = {
         image.src = `/img/${name}`
         this.ctx.drawImage(image, posY, posX, w, h)
     },
-
-    sound(src) {
-        console.log("SUENAAA?")
-        this.sound = document.createElement("audio");
-        this.sound.src = src;
-        this.sound.setAttribute("preload", "auto");
-        this.sound.setAttribute("controls", "none");
-        this.sound.style.display = "none";
-        document.body.appendChild(this.sound);
-        this.sound.play();
-
-
-    },
-
-
 
 }

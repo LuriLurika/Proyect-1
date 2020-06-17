@@ -10,7 +10,7 @@
 * {
     margin: 0;
     padding: 0;
-    cursor: initial;
+    cursor: initial !important;
 }
 
 @font-face {
@@ -21,6 +21,7 @@
     font-style: normal;
 }
 
+
 body {
     background-color: black;
 }
@@ -29,14 +30,12 @@ body {
     color: yellow;
     font-size: 1.5em;
     font-family: 'Press Start 2P', cursive;
-
 }
 
 .letter {
     color: yellow;
     font-size: 2.2em;
     font-family: 'pacfontregular';
-    text-align: center;
 }
 
 /*----------PANTALLA INICIO---------*/
@@ -47,12 +46,14 @@ body {
 }
 
 svg {
-    /*background-color: yellow;*/
+    color: white;
 }
 
 .blink {
     animation: blinker 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite;
 }
+
+
 
 @keyframes blinker {
     50% {
@@ -60,10 +61,39 @@ svg {
     }
 }
 
-
 .notDisplayed {
     display: none !important
 }
+
+/*----------PANTALLA CARGA ---------*/
+
+.pantalla-carga {
+    display: none;
+}
+
+#logo-juego {
+    stroke-width: 1;
+    stroke: yellow;
+    fill: transparent;
+    width: 80%;
+    margin: 50px 200px;
+}
+
+.show-names {
+
+    animation: fadein 7s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 
 /*----------PANTALLA JUEGO---------*/
 
@@ -94,6 +124,7 @@ span.pixel-letter {
     line-height: .7em;
 }
 
+
 .inst {
     color: yellow;
     font-size: 20px;
@@ -103,4 +134,43 @@ span.pixel-letter {
 
 .marg {
     margin-top: 40px;
+}
+
+
+/*----------PANTALLAS ESTADO ---------*/
+
+.divCanvas {
+    display: none;
+    width: 900px;
+    height: 650px;
+    margin: 0 auto;
+}
+
+.divCanvas p {
+    margin: auto 0;
+}
+
+#merluzo {
+    text-align: center;
+    font-size: 50px;
+    margin: auto 0;
+    margin-top: 80px;
+
+}
+
+#party {
+    text-align: center;
+    font-size: 50px;
+    margin: auto 0;
+    margin-top: 200px;
+
+
+}
+
+#pum {
+    text-align: center;
+    font-size: 50px;
+    margin: auto 0;
+    margin-top: 100px;
+
 }
