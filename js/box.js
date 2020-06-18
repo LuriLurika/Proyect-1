@@ -14,7 +14,6 @@ class Box {
         ctx.strokeStyle = 'blue';
         ctx.lineWidth = 7;
 
-        //https://developer.mozilla.org/es/docs/Web/Guide/HTML/Canvas_tutorial/Dibujando_formas
         ctx.beginPath();
         ctx.moveTo(x, y + radius);
         ctx.lineTo(x, y + height - radius);

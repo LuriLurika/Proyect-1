@@ -8,14 +8,17 @@ const logo = document.querySelector('#logo-juego')
 
 function startGame() {
 
-    //new Audio("mp3/theme.mp3").play()
+    let theme = new Audio("mp3/theme.mp3")
+
+    theme.volume = .03
+    theme.play()
     //Y la pantalla de carga aparece
     pantallaCarga.style.display = 'block'
     //Al clicar en start la pantalla inicio se esconde
     pantallaInicio.classList.add("notDisplayed")
 
     const svgMalingo = new Vivus('logo-juego', {
-        duration: 550,
+        duration: 350,
         animTimingFuction: Vivus.EASE,
     });
 
@@ -24,7 +27,6 @@ function startGame() {
         //Que se vea la pantalla de juego
         pantallaJuego.style.display = 'block'
         pantallaCarga.classList.add("notDisplayed")
-        german.init('canvasGame')
         document.getElementById("party").style.display = 'flex'
         document.getElementById("canvasGame").style.display = 'none'
         countdown()
@@ -52,7 +54,6 @@ function countdown() {
 
     setInterval(() => {
         printTime.innerHTML = time--
-        console.log(printTime)
         if (time < 0) {
             printTime.innerHTML = "GO! GO! GO!"
         }

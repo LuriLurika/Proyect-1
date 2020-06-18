@@ -54,7 +54,16 @@ class Character {
         this.ctx.translate(translation.x, translation.y);
 
         // rotate the canvas to the specified degrees
-        this.ctx.rotate(translation.angle * Math.PI / 180);
+        this.ctx.rotate(translation.angle * Math.PI / 180) 
+            if (this.direction === "left") {
+                this.image.src = `/img/german-sprites-izq.png`
+            } else {
+                this.image.src = `/img/pacman.png`
+            }
+        
+        
+        
+        
 
         // we’re done with the rotating so restore the unrotated context
 
@@ -66,8 +75,6 @@ class Character {
             this.characterSize.h, // altura que vamos a coger de la imagen
             0,
             0,
-            //this.characterPos.x * this.tile.w, //DX coordenada en la que pintamos
-            //this.characterPos.y * this.tile.h, // DY coordenada en que pintamos
             this.tile.w, //width que va a tener la imagen cuando la pintemosla imagen cuando la pintemos
             this.tile.h, //height que va a tener la imagen cuando lo pintemos
         )
@@ -78,32 +85,34 @@ class Character {
     }
 
 
-    calculateTranslation() {
-        let result = {}
-        switch (this.direction) {
-            case "up":
-                result.x = (this.characterPos.x + 0) * this.tile.w
-                result.y = (this.characterPos.y + 1) * this.tile.h
-                result.angle = -90
-                break;
-            case "down":
-                result.x = (this.characterPos.x + 1) * this.tile.w
-                result.y = (this.characterPos.y + 0) * this.tile.h
-                result.angle = 90
-                break;
-            case "left":
-                result.x = (this.characterPos.x + 1) * this.tile.w
-                result.y = (this.characterPos.y + 1) * this.tile.h
-                result.angle = 180
-                break;
-            default:
-                result.x = this.characterPos.x * this.tile.w
-                result.y = this.characterPos.y * this.tile.h
-                result.angle = 0
-                break;
-        }
-        return result
-    }
+     calculateTranslation() {
+         let result = {}
+         switch (this.direction) {
+             case "up":
+                 result.x = (this.characterPos.x + 0) * this.tile.w
+                 result.y = (this.characterPos.y + 1) * this.tile.h
+                 result.angle = -90
+                 break;
+             case "down":
+                 result.x = (this.characterPos.x + 1) * this.tile.w
+                 result.y = (this.characterPos.y + 0) * this.tile.h
+                 result.angle = 90
+                 break;
+             case "left":
+                 result.x = (this.characterPos.x ) * this.tile.w
+                 result.y = (this.characterPos.y ) * this.tile.h
+                 result.angle = 0
+                 break;
+             default:
+                 result.x = this.characterPos.x * this.tile.w
+                 result.y = this.characterPos.y * this.tile.h
+                 result.angle = 0
+                 break;
+         }
+         return result
+     }
+    
+    
 
 
     animate(framesCounter) {
@@ -182,12 +191,9 @@ class Character {
             elm.x === this.characterPos.x && elm.y === this.characterPos.y)
         if (ironhack.length > 0) {
             onIronEaten(ironhack[0])
-           
+
         }
-
     }
-
-   
 
     setListener() {
         document.addEventListener("keydown", e => {
@@ -210,3 +216,9 @@ class Character {
     }
 
 }
+
+
+
+
+
+

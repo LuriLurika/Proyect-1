@@ -22,6 +22,7 @@ arrayDayan = [
     new DayanPath(6, 5),
     new DayanPath(6, 4),
     new DayanPath(6, 3),
+    new DayanPath(6, 2),
     new DayanPath(5, 2),
     new DayanPath(4, 2),
     new DayanPath(4, 1),

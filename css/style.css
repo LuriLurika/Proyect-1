@@ -129,6 +129,7 @@ svg {
     font-size: .6em;
     font-weight: 100;
     padding-bottom: 55px;
+    opacity: .6;
 }
 
 .a-repositorio {
@@ -181,23 +182,21 @@ span.pixel-letter {
     font-size: .7em;
     line-height: .7em;
 }
-
-.inst {
-    color: yellow;
-    font-size: 20px;
-    font-family: monospace;
-    text-align: center;
+.margin-top-countdown2{
+    padding-top: 40px;
+    font-size: 30px;
 }
 
-.marg {
-    margin-top: 40px;
+#countdown2 {
+    padding-top: 40px;
+    font-size: 30px;
 }
 
 
 /*----------PANTALLAS ESTADO ---------*/
 
 .divCanvas {
-    display: none;
+
     height: 650px;
     margin: 0 auto;
     padding: 0 50px;
@@ -214,22 +213,27 @@ span.pixel-letter {
 #merluzo {
     text-align: center;
     font-size: 50px;
+    display: none;
 }
 
 #party {
     text-align: center;
     font-size: 40px;
+    display: none;
 
 }
 
 #pum {
     text-align: center;
     font-size: 50px;
+    display: none;
 }
 
 #countdown {
     display: block;
 }
+
+
 
 /*----------OJO CUIDAO: UNA MEDIAQUERY LOCATIS ---------*/
 
