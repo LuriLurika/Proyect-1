@@ -24,29 +24,31 @@
                 <div class="row">
                     <div class="container">
                         <div class="col">
-                            <img src="img\german-logo.png" alt="GER-MAN Logo">
+                            <img src="img\logo-izq.png" alt="GER-MAN Logo">
                         </div>
                         <div class="col">
 
-                            <div class="lists text-left">
-                                <ul class="nes-list is-disc">
-                                    <li class='letter text-center'>INSTRUCCIONES</li>
-                                    <p class='inst marg'>El objetivo es comer todas las manzanas para poder completar el
-                                        Bootcamp</p>
-                                    <p class='inst'>¡Ten cuidado con los TA y tus compañeras!, intentarán complicarte el
-                                        camino</p>
-                                    <p class='inst'>Cada manzana te da 10 puntos</p>
-
-                                </ul>
+                            <div class="with-title is-centered nes-container is-rounded is-dark pixel-letter">
+                                <p class="title title-nes-container">INSTRUCCIONES</p>
+                                <p class="text-nes-container">El objetivo es comerse todas las manzanas para poder
+                                    completar el <strong class="ironhack"> <a target="_blank"
+                                            href="https://www.ironhack.com/es/desarrollo-web">Bootcamp</a>
+                                    </strong></p>
+                                <p class="text-nes-container">¡Cuidado con los TA's y tus compañeras!, intentarán
+                                    complicarte el camino</p>
+                                <p class="text-nes-container">Cada manzana suma 10 puntos</p>
+                                <p class="text-nes-container kata">KATA: Tienes una hora para calcular en qué mes se
+                                    recogieron. Go!</p>
                             </div>
+
                         </div>
                     </div><!-- END CONTAINER -->
                 </div> <!-- END ROW -->
                 <div class="row d-flex align-self-baseline">
                     <div class="container">
                         <div class="col-10">
-                            <span class="nes-text is-warning pixel-letter"><i class="nes-icon github is-small"></i> <a
-                                    href="https://github.com/LuriLurika/Proyect-1">Repositorio
+                            <span class="a-repositorio pixel-letter"><i class="nes-icon github is-small"></i> <a
+                                    target="_blank" href="https://github.com/LuriLurika/Proyect-1">Repositorio
                                     del juego</a></span>
                         </div>
                     </div><!-- END CONTAINER -->
@@ -68,20 +70,32 @@
 
 
                 <div class="row">
-                    <div class="col-12 carteles">
+                    <div class="col-12">
                         <canvas id="canvasGame" style="width: 900px; height: 650px;"> </canvas>
-                        <div id="party" class="divCanvas">
-                            <p class="text-center letter">PARTY!!!</p>
+                        <div id="party" class="blink divCanvas">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="text-center letter">PARTY!!!</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p id="countdown" class="text-center pixel-letter">5</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
                         <div id="merluzo" class="divCanvas">
-                            <p class="text-center letter">HAS PERDIDO... ¡MERLUZO!</p>
+                            <p class="text-center letter">HAS PERDIDO... merluzo!</p>
+                            <!-- la ! no sale porque no es una americanada =(  -->
                         </div>
 
 
                         <div id="pum" class="divCanvas">
-                            <p class="text-center letter">PUM!!... IN YOUR FACE!</p>
+                            <p class="text-center letter">pum!!... IN YOUR FACE!</p>
                         </div>
 
 
@@ -92,10 +106,14 @@
 
                 <div class="row pixel-letter">
                     <div class="col-6">
-                        <p class="d-flex justify-content-around">FOTO FANTASMITAS</p>
+                        <p class="d-flex justify-content-around">
+
+                            <img class="ghost-der" src="img/ghosts_der.png"
+                                alt="Reinterpretación de los ghosts del pacman">
+                        </p>
                     </div>
                     <div class="col-6">
-                        <p class="d-flex justify-content-around" id="countdown">FOTO GERMAN</p>
+                        <p class="d-flex justify-content-around" id="countdown2">FOTO GERMAN</p>
                     </div>
                 </div><!-- END ROW -->
 
@@ -138,7 +156,7 @@
 
 
 
-                <button class=" nes-btn is-error text-center blink" onclick="startGame()">START</button>
+                <button class=" nes-btn is-error text-center blink pixel-letter" onclick="startGame()">START</button>
 
 
 

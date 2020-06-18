@@ -180,7 +180,7 @@ const german = {
 
         if (this.arrayApple.length === 0 && this.arrayIron.length === 0) {
             setTimeout(function () {
-                document.getElementById("pum").style.display = "block"
+                document.getElementById("pum").style.display = "flex"
                 document.getElementById("canvasGame").style.display = "none"
             }, 2000)
             document.getElementById("pum").style.display = "none"
@@ -283,17 +283,18 @@ const german = {
                 this.ghostReset()
             } else {
                 this.gameOver()
-            
-                document.getElementById("merluzo").style.display = 'block'
+
+                document.getElementById("merluzo").style.display = 'flex'
                 document.getElementById("canvasGame").style.display = 'none'
                 setTimeout(function () {
                     document.getElementById("merluzo").style.display = 'none'
+                    document.getElementById("canvasGame").style.display = 'block'
                 }, 1000)
             }
         }
     },
 
-    setterStatus(status){
+    setterStatus(status) {
         this.pacmanStatus = status
     },
 
@@ -303,23 +304,23 @@ const german = {
         this.drawPills()
     },
 
-    
+
 
     chronometer() {
-        
-        document.getElementById('countdown').innerHTML = this.totalTime;
+
+        document.getElementById('countdown2').innerHTML = this.totalTime;
         if (this.totalTime == 0) {
             this.totalTime = 10
             this.setterStatus('normal')
 
         } else {
             this.totalTime -= 1
-            setTimeout(()=>this.chronometer(), 1000)
+            setTimeout(() => this.chronometer(), 1000)
         }
     },
 
     ghostReset() {
-       this.createGhost()
+        this.createGhost()
     },
 
 

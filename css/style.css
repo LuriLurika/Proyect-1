@@ -38,11 +38,16 @@ body {
     font-family: 'pacfontregular';
 }
 
+.notDisplayed {
+    display: none !important
+}
+
 /*----------PANTALLA INICIO---------*/
 
 .pantalla-inicio button {
-    padding: 25px 45px;
+    padding: 55px 95px;
     margin: 70px 0;
+    box-shadow: 10px 10px #888888;
 }
 
 svg {
@@ -53,17 +58,12 @@ svg {
     animation: blinker 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite;
 }
 
-
-
 @keyframes blinker {
     50% {
         opacity: .4;
     }
 }
 
-.notDisplayed {
-    display: none !important
-}
 
 /*----------PANTALLA CARGA ---------*/
 
@@ -76,11 +76,10 @@ svg {
     stroke: yellow;
     fill: transparent;
     width: 80%;
-    margin: 50px 200px;
+    margin: 120px 200px;
 }
 
 .show-names {
-
     animation: fadein 7s;
 }
 
@@ -98,14 +97,74 @@ svg {
 /*----------PANTALLA JUEGO---------*/
 
 .pantalla-juego {
-    display: none
+
+    /* TODO ojo cuidao dejar en NONE  */
+    display: none;
 }
 
 /*----------PANTALLA JUEGO -- IZQUIERDA ---------*/
+.pantalla-juego {
+    margin-top: 50px;
+}
+
 .left img {
     width: 100%;
-    padding: 35px 10px;
+    padding: 5px 10px 50px 10px;
 }
+
+
+.text-nes-container {
+    font-size: .8em;
+    line-height: 2em;
+    margin: 55px 0;
+}
+
+.title-nes-container {
+    font-size: 1em !important;
+    line-height: .8em;
+}
+
+.kata {
+    margin-top: -50px;
+    font-size: .6em;
+    font-weight: 100;
+    padding-bottom: 55px;
+}
+
+.a-repositorio {
+    text-align: center;
+    padding-left: 66px;
+}
+
+.ironhack a {
+    color: rgb(45, 197, 250);
+    /*pequeño robo de identidad corporativa?*/
+    font-variant: small-caps;
+}
+
+.ghost-der {
+    height: 70px;
+    animation:
+        pulse 3s ease infinite alternate,
+        nudge 5s linear infinite alternate;
+}
+
+@keyframes nudge {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(150px, 0);
+    }
+
+    80% {
+        transform: translate(-150px, 0);
+    }
+}
+
 
 /*----------PANTALLA JUEGO -- DERECHA ---------*/
 #canvasGame {
@@ -116,14 +175,12 @@ svg {
 
 .letter span {
     font-size: .8em;
-    ;
 }
 
 span.pixel-letter {
     font-size: .7em;
     line-height: .7em;
 }
-
 
 .inst {
     color: yellow;
@@ -141,36 +198,45 @@ span.pixel-letter {
 
 .divCanvas {
     display: none;
-    width: 900px;
     height: 650px;
     margin: 0 auto;
+    padding: 0 50px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .divCanvas p {
     margin: auto 0;
+    display: block;
 }
 
 #merluzo {
     text-align: center;
     font-size: 50px;
-    margin: auto 0;
-    margin-top: 80px;
-
 }
 
 #party {
     text-align: center;
-    font-size: 50px;
-    margin: auto 0;
-    margin-top: 200px;
-
+    font-size: 40px;
 
 }
 
 #pum {
     text-align: center;
     font-size: 50px;
-    margin: auto 0;
-    margin-top: 100px;
+}
 
+#countdown {
+    display: block;
+}
+
+/*----------OJO CUIDAO: UNA MEDIAQUERY LOCATIS ---------*/
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 100%;
+    }
 }
