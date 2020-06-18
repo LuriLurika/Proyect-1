@@ -65,10 +65,10 @@ const german = {
         escarlata: undefined,
 
 
-        sound_pill: new Audio("mp3/waka.mp3"),
-        sound_power_pill: new Audio('mp3/powepill.mp3'),
+        sound_pill: new Audio("mp3/eat_ball.mp3"),
+        sound_power_pill: new Audio('mp3/powerpill.mp3'),
         sound_die: new Audio('mp3/die.mp3'),
-
+        sound_eatGhost: new Audio('mp3/eatghost.mp3'),
 
 
 
@@ -104,7 +104,7 @@ const german = {
                 this.laura.moveGhost()
                 this.escarlata.moveGhost()
                 this.checkGhostCollision() ? this.gameOver() : null
-
+                                
             }, 8000 / this.fps)
 
         },
@@ -179,14 +179,16 @@ const german = {
             this.arrayIron = [...this.arrayIron].filter(elm => {
                 return elm.x !== ironEaten.x || elm.y !== ironEaten.y
             })
-            //SONIDITOS MOLONGUIS
-            //this.sound_power_pill.play()
-
+             
+                        
             // SUMAR 10 PUNTOS POR CADA IRONHACK
             this.score += 10
             this.updateScore()
             this.setterStatus('super')
             this.chronometer()
+            this.sound_power_pill.volume = .03
+            this.sound_power_pill.play()
+
         })
 
         if (this.arrayApple.length === 0 && this.arrayIron.length === 0) {
@@ -295,21 +297,29 @@ const german = {
                     this.score += 100
                     this.updateScore()
                     this.dayan.reset()
+                    this.sound_eatGhost.volume = .03
+                    this.sound_eatGhost.play()
                 }
                 if ((this.pacman.characterPos.x === this.kike.getCurrentPosition().x) && (this.pacman.characterPos.y === this.kike.getCurrentPosition().y)) {
                     this.score += 100
                     this.updateScore()
                     this.kike.reset()
+                    this.sound_eatGhost.volume = .03
+                    this.sound_eatGhost.play()
                 }
                 if ((this.pacman.characterPos.x === this.laura.getCurrentPosition().x) && (this.pacman.characterPos.y === this.laura.getCurrentPosition().y)) {
                     this.score += 100
                     this.updateScore()
                     this.laura.reset()
+                    this.sound_eatGhost.volume = .03
+                    this.sound_eatGhost.play()
                 }
                 if ((this.pacman.characterPos.x === this.escarlata.getCurrentPosition().x) && (this.pacman.characterPos.y === this.escarlata.getCurrentPosition().y)) {
                     this.score += 100
                     this.updateScore()
                     this.escarlata.reset()
+                    this.sound_eatGhost.volume = .03
+                    this.sound_eatGhost.play()
                 }
 
             } else {
