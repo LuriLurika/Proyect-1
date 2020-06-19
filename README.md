@@ -4,11 +4,11 @@ Primer proyecto de Escarlata Fernandez (https://github.com/efdez) y Laura Martí
 
 Ironhack (Madrid): Bootcamp Full-Stack Web Developer.
 
-Hemos desarrollado un juego a través de HTML Canvas, CSS y JavaScript.
+Hemos desarrollado un juego a través de HTML, Canvas, CSS y JavaScript.
 
 Es un PacMan modificado. 
 
-El jugador maneja a "Ger-man" que tiene que ir comiendo manzanas por el laberint.
+El jugador maneja a "Ger-man" que tiene que ir comiendo manzanas por el laberinto.
 
 Puede pasar por el tunel para ir al otro lado del mapa, mientras huye de los fantasmas. 
 
