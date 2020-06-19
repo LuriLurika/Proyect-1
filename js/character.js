@@ -16,7 +16,7 @@ class Character {
         }
 
         this.image = new Image()
-        this.image.src = `/img/${name}`
+        this.image.src = `./img/${name}`
         this.image.frames = 3
         this.image.framesIndex = 0
 
@@ -56,9 +56,9 @@ class Character {
         // rotate the canvas to the specified degrees
         this.ctx.rotate(translation.angle * Math.PI / 180) 
             if (this.direction === "left") {
-                this.image.src = `/img/german-sprites-izq.png`
+                this.image.src = `./img/german-sprites-izq.png`
             } else {
-                this.image.src = `/img/pacman.png`
+                this.image.src = `./img/pacman.png`
             }
         
         

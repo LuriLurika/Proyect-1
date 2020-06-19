@@ -12,7 +12,7 @@ class Ghost {
             x: x
         }
         this.image = new Image()
-        this.image.src = `/img/${name}`
+        this.image.src = `./img/${name}`
         this.image.frames = 4
         this.image.framesIndex = 0
         this.tile = {

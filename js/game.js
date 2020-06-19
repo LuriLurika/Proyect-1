@@ -394,7 +394,7 @@ const german = {
 
     drawImage(name, posX, posY, w, h) {
         let image = new Image()
-        image.src = `/img/${name}`
+        image.src = `./img/${name}`
         this.ctx.drawImage(image, posY, posX, w, h)
     },
 
