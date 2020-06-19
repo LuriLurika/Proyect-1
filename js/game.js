@@ -390,7 +390,7 @@ const german = {
 
     },
 
-    //MÉTODO PARA CARGAR IMÁGENES
+    //MÉTODO PARA CARGAR IMÁGENES. PARA CARGARLO FUERA NECESITA EMPEZAR LA RUTA CON ./
 
     drawImage(name, posX, posY, w, h) {
         let image = new Image()
