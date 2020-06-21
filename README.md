@@ -1,4 +1,4 @@
-# Proyect-1 GER-MAN
+# Project-1 GER-MAN
 
 Primer proyecto de Escarlata Fernandez (https://github.com/efdez) y Laura Martínez (https://github.com/LuriLurika).
 
